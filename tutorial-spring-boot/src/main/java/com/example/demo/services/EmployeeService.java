@@ -56,13 +56,14 @@ import java.util.Optional;
 	    @Override
 	    public Optional<EmployeeDto> findEmployeeById(Long employeeId)
 	    {
-	        EmployeeDto employeeDto= null;
-	    	Employee employee = employeeRepository.findById(employeeId).get();
-	        if (null != employee)
-	        {
-	        	employeeDto = modelMapper.map(employee,EmployeeDto.class);
-	        }
-	    	return Optional.of(employeeDto);
+	    	EmployeeDto employeeDto = null;
+	    	Optional<Employee> employee = employeeRepository.findById(employeeId);
+	    	if (null != employee.get())
+	    	{
+	    	Employee getEmployee = employee.get();
+	        employeeDto = modelMapper.map(getEmployee,EmployeeDto.class);
+	    	}
+	        return Optional.of(employeeDto);
 	    }
 
 	    @Override
@@ -83,10 +84,7 @@ import java.util.Optional;
 	        return (null == employeeDeleted)?true:false;
 	    }
 	    
-	    private EmployeeDto convertToDto(Employee employee) {
-	        EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
-	        return employeeDto;
-	    }
+	    
 	}
 
 

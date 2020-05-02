@@ -19,7 +19,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket postsApi() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("public-api")
+        return new Docket(DocumentationType.SWAGGER_2).groupName("employes-api")
                 .apiInfo(apiInfo()).select().paths(postPaths()).build();
     }
 
